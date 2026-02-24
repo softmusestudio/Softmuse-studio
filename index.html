@@ -1,80 +1,127 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>SoftMuse Studio</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            font-family: "Georgia", serif;
-            background-color: #fffafc;
-            text-align: center;
-            padding: 40px;
-            color: #4a4a4a;
-        }
-        h1 {
-            font-size: 36px;
-            margin-bottom: 10px;
-        }
-        .intro {
-            max-width: 500px;
-            margin: auto;
-            font-size: 18px;
-            line-height: 1.6;
-            margin-bottom: 40px;
-        }
-        img {
-            width: 300px;
-            border-radius: 18px;
-            margin-top: 20px;
-        }
-        .product-title {
-            font-size: 24px;
-            margin-top: 30px;
-        }
-        .price {
-            font-size: 18px;
-            margin-top: 5px;
-            color: #7a6f73;
-        }
-        .button {
-            display: inline-block;
-            margin-top: 25px;
-            padding: 14px 30px;
-            background-color: #e8cfd3;
-            color: #000;
-            text-decoration: none;
-            border-radius: 30px;
-            font-size: 18px;
-        }
-        .button:hover {
-            background-color: #e0bfc4;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SoftMuse Studio 🌸</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: #fffafc;
+    text-align: center;
+    color: #444;
+}
+
+/* Intro Section */
+.hero {
+    padding: 40px 20px;
+}
+
+.hero h1 {
+    color: #ff8fab;
+    font-size: 32px;
+}
+
+.hero p {
+    max-width: 500px;
+    margin: auto;
+    font-size: 16px;
+}
+
+/* Cover Image */
+.cover {
+    margin-top: 20px;
+}
+
+.cover img {
+    width: 250px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+/* Download Card */
+.card {
+    background: white;
+    margin: 30px auto;
+    padding: 25px;
+    border-radius: 25px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.card h2 {
+    color: #ff8fab;
+}
+
+/* QR Section */
+.qr img {
+    width: 180px;
+    margin: 15px 0;
+    border-radius: 15px;
+}
+
+/* Button */
+.download-btn {
+    display: inline-block;
+    padding: 12px 25px;
+    background: #ffd6e0;
+    color: #444;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.download-btn:hover {
+    background: #ffb3c6;
+}
+
+footer {
+    margin: 25px 0;
+    font-size: 12px;
+    color: #aaa;
+}
+</style>
 </head>
 <body>
 
-    <h1>SoftMuse Studio</h1>
+<!-- Intro Section -->
+<div class="hero">
+    <h1>🌸 SoftMuse Gentle Reminder Stickers</h1>
+    <p>
+        A soft little collection of comforting stickers made with love 💖  
+        Perfect for WhatsApp, journaling & gentle daily reminders.
+    </p>
 
-    <div class="intro">
-        Gentle creations for calm minds and soft living.  
-        SoftMuse is a space for minimal, aesthetic digital pieces 
-        designed to bring quiet motivation and emotional warmth 
-        to your everyday life.
+    <!-- Cover Image -->
+    <div class="cover">
+        <img src="00_Cover.PNG" alt="Sticker Cover">
+    </div>
+</div>
+
+<!-- Download + QR Card -->
+<div class="card">
+    <h2>✨ Download Sticker Pack</h2>
+    <p>Support the artist & unlock the sticker pack 💕</p>
+
+    <!-- QR Code (UPLOAD YOUR QR IMAGE AND RENAME IT qr.png) -->
+    <div class="qr">
+        <img src="qr.png" alt="Payment QR">
+        <p>Scan & pay to download 💗</p>
     </div>
 
-    <img src="00_Cover.PNG" alt="Gentle Reminder Stickers">
-
-    <div class="product-title">
-        Gentle Reminder Stickers Pack
-    </div>
-
-    <div class="price">
-        10 Minimal Aesthetic Stickers • ₹79
-    </div>
-
-    <a class="button" href="SoftMuse_GentleReminder_Stickers.zip" download>
-        Download Stickers
+    <!-- ZIP Download -->
+    <a class="download-btn" href="SoftMuse_GentleReminder_Stickers.zip" download>
+        🌷 Download Stickers
     </a>
+</div>
+
+<footer>
+Made with soft vibes by SoftMuse Studio 🌸
+</footer>
 
 </body>
 </html>
