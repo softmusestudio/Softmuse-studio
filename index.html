@@ -3,125 +3,146 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SoftMuse Studio 🌸</title>
-
+<title>Cute Sticker Builder</title>
 <style>
-body {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    background: #fffafc;
-    text-align: center;
-    color: #444;
-}
+    body {
+        margin: 0;
+        font-family: 'Poppins', sans-serif;
+        background: #fffafc;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+    }
 
-/* Intro Section */
-.hero {
-    padding: 40px 20px;
-}
+    h1 {
+        margin-top: 20px;
+        color: #ff8fab;
+        font-weight: 500;
+    }
 
-.hero h1 {
-    color: #ff8fab;
-    font-size: 32px;
-}
+    .toolbar {
+        margin: 15px;
+        padding: 10px 20px;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 
-.hero p {
-    max-width: 500px;
-    margin: auto;
-    font-size: 16px;
-}
+    input, button {
+        padding: 8px 14px;
+        border-radius: 12px;
+        border: 1px solid #ffd6e0;
+        outline: none;
+        font-size: 14px;
+    }
 
-/* Cover Image */
-.cover {
-    margin-top: 20px;
-}
+    button {
+        background: #ffd6e0;
+        border: none;
+        cursor: pointer;
+        transition: 0.3s;
+    }
 
-.cover img {
-    width: 250px;
-    border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-}
+    button:hover {
+        background: #ffb3c6;
+    }
 
-/* Download Card */
-.card {
-    background: white;
-    margin: 30px auto;
-    padding: 25px;
-    border-radius: 25px;
-    width: 90%;
-    max-width: 400px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-}
+    #canvas {
+        width: 350px;
+        height: 500px;
+        background: white;
+        border-radius: 25px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+    }
 
-.card h2 {
-    color: #ff8fab;
-}
+    .sticker {
+        position: absolute;
+        cursor: grab;
+        font-size: 24px;
+        user-select: none;
+    }
 
-/* QR Section */
-.qr img {
-    width: 180px;
-    margin: 15px 0;
-    border-radius: 15px;
-}
-
-/* Button */
-.download-btn {
-    display: inline-block;
-    padding: 12px 25px;
-    background: #ffd6e0;
-    color: #444;
-    border-radius: 20px;
-    text-decoration: none;
-    font-weight: 500;
-    transition: 0.3s;
-}
-
-.download-btn:hover {
-    background: #ffb3c6;
-}
-
-footer {
-    margin: 25px 0;
-    font-size: 12px;
-    color: #aaa;
-}
+    footer {
+        margin-top: 15px;
+        font-size: 12px;
+        color: #aaa;
+    }
 </style>
 </head>
 <body>
 
-<!-- Intro Section -->
-<div class="hero">
-    <h1>🌸 SoftMuse Gentle Reminder Stickers</h1>
-    <p>
-        A soft little collection of comforting stickers made with love 💖  
-        Perfect for WhatsApp, journaling & gentle daily reminders.
-    </p>
+<h1>🌸 Cute Sticker Builder</h1>
 
-    <!-- Cover Image -->
-    <div class="cover">
-        <img src="00_Cover.PNG" alt="Sticker Cover">
-    </div>
+<div class="toolbar">
+    <input type="text" id="stickerText" placeholder="Enter cute text ✨">
+    <button onclick="addSticker()">Add Sticker</button>
+    <button onclick="downloadSticker()">Download</button>
 </div>
 
-<!-- Download + QR Card -->
-<div class="card">
-    <h2>✨ Download Sticker Pack</h2>
-    <p>Support the artist & unlock the sticker pack 💕</p>
+<div id="canvas"></div>
 
-    <!-- QR Code (UPLOAD YOUR QR IMAGE AND RENAME IT qr.png) -->
-    <div class="qr">
-        <img src="qr.png" alt="Payment QR">
-        <p>Scan & pay to download 💗</p>
-    </div>
+<footer>Made with soft vibes 💖</footer>
 
-    <!-- ZIP Download -->
-    <a class="download-btn" href="SoftMuse_GentleReminder_Stickers.zip" download>
-        🌷 Download Stickers
-    </a>
-</div>
+<script>
+let canvas = document.getElementById("canvas");
+let currentSticker = null;
+let offsetX, offsetY;
 
-<footer>
-Made with soft vibes by SoftMuse Studio 🌸
-</footer>
+function addSticker() {
+    let text = document.getElementById("stickerText").value;
+    if (!text) return;
+
+    let sticker = document.createElement("div");
+    sticker.className = "sticker";
+    sticker.innerText = text;
+    sticker.style.left = "100px";
+    sticker.style.top = "100px";
+
+    sticker.onmousedown = dragStart;
+    canvas.appendChild(sticker);
+
+    document.getElementById("stickerText").value = "";
+}
+
+function dragStart(e) {
+    currentSticker = e.target;
+    offsetX = e.offsetX;
+    offsetY = e.offsetY;
+    document.onmousemove = dragMove;
+    document.onmouseup = dragEnd;
+}
+
+function dragMove(e) {
+    if (!currentSticker) return;
+    let rect = canvas.getBoundingClientRect();
+    currentSticker.style.left = (e.clientX - rect.left - offsetX) + "px";
+    currentSticker.style.top = (e.clientY - rect.top - offsetY) + "px";
+}
+
+function dragEnd() {
+    document.onmousemove = null;
+    document.onmouseup = null;
+    currentSticker = null;
+}
+
+function downloadSticker() {
+    html2canvas(canvas).then(canvasImage => {
+        let link = document.createElement("a");
+        link.download = "my-sticker.png";
+        link.href = canvasImage.toDataURL();
+        link.click();
+    });
+}
+</script>
+
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 
 </body>
 </html>
